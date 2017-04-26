@@ -4,7 +4,8 @@ import Story from './Story'
 
 const ListStories = ({ stories }) => (
   <section
-    className="fl w-100 ba"
+    className="w-100 ba"
+    // style={{display: 'flex', flexWrap: 'wrap', background: 'url(http://mrmrs.io/photos/u/009.jpg) no-repeat center'}}
     style={{display: 'flex', flexWrap: 'wrap'}}
   >
 

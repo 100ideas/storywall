@@ -1,7 +1,7 @@
 
 export default ({ story }) => (
   <div
-    className="fl w-100 w-50-m w-25-l pa3-m pa3-l bg-white-50 ba"
+    className="w-100 w-50-m w-25-l pa3-m pa3-l ba bg-white-20"
     // style={{display: 'flex'}}
   >
     <a href="" className="pv2 grow db no-underline black">
