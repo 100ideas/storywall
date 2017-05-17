@@ -4,14 +4,22 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
+    "preinstall": "scripts/preinstall.sh",
     "dev": "node server.js",
+    "build": "next build",
+    "start": "next start",
     "next": "next"
   },
   "dependencies": {
     "express": "^4.15.2",
     "isomorphic-unfetch": "^1.0.0",
+    "moment": "^2.18.1",
     "next": "^2.1.1",
     "react": "^15.4.2",
-    "react-dom": "^15.4.2"
+    "react-dom": "^15.4.2",
+    "react-toolbox": "^2.0.0-beta.8"
+  },
+  "optionalDependencies": {
+    "phantomjs-prebuilt": "^2.1.14"
   }
 }

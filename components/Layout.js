@@ -22,7 +22,7 @@ export default ({ children, title = 'default title' }) => (
     <title>{ title }</title>
     <meta charSet='utf-8' />
     <meta name='viewport' content='initial-scale=1.0, width=device-width' />
-    <link rel="stylesheet" href="https://unpkg.com/tachyons@4.7.0/css/tachyons.min.css"/>
+    <link rel="stylesheet" href="static/tachyons.min.css"/>
     <style type="text/css">
       {'body {background:blanchedalmond;}'}
     </style>

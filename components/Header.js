@@ -19,7 +19,12 @@ const Header = () => (
           <Link href="/about">
             <a className="f6 fw4 hover-white no-underline white-70 dib-l pv2 ph3">About</a>
           </Link>
-          <a className="f6 fw4 hover-white no-underline white-70 dib ml2 pv2 ph3 ba" href="/" >Sign Up</a>
+          <Link href="/rasterize">
+            <a className="f6 fw4 hover-white no-underline white-70 dib-l pv2 ph3">Rasterize</a>
+          </Link>
+          <Link href="/create">
+            <a className="f6 fw4 hover-white no-underline white-70 dib ml2 pv2 ph3 ba">Create</a>
+          </Link>
         </div>
       </nav>
 
