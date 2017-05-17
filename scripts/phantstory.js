@@ -1,7 +1,11 @@
 var moment = require('moment');
 var system = require('system');
+var fs = require('fs');
 var page = require('webpage').create();
-var urls = ['http://localhost:3000/rasterize', 'http://localhost:3000/create', 'http://localhost:3000/', 'http://localhost:3000/about', 'https://www.google.com']
+// var urls = ['http://localhost:3000/rasterize', 'http://localhost:3000/create', 'http://localhost:3000/', 'http://localhost:3000/about', 'https://www.google.com']
+var url = 'http://localhost:3000/rasterize/' + (system.args[1] ? system.args[1] : '');
+
+console.log("\nphantstory.js\n--------------\n - CWD: " + fs.workingDirectory + " \n - rasterizing " + url + "\n\n");
 
 page.onResourceError = function(resourceError) {
   console.log('\033[1;31m' + 'Error (#' + resourceError.id + '): URL: ' + request.url.substr(0,80) + ' || ' + resourceError.errorCode + ' || Description: ' + resourceError.errorString + '\033[0m');
@@ -38,7 +42,7 @@ page.paperSize = {
 // page.settings.userAgent = "Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1866.237 Safari/537.36";
 page.settings.resourceTimeout = 3000;
 
-page.open(urls[system.args[1]], function (status)
+page.open(url, function(status)
 {
   if(status !== 'success') {
     console.log('Unable to load the address!');
@@ -47,9 +51,9 @@ page.open(urls[system.args[1]], function (status)
     window.setTimeout(function () {
       var d = moment().format('YYMMDD_HHMMss')
 
-      page.render('/Users/macowell/Desktop/phantom/' + d + '-203dpi' + '.jpg', {quality: 100, format: 'jpeg'});
+      page.render('static/print/' + d + '-72dpi' + '.jpg', {quality: 100, format: 'jpeg'});
       // page.render('/Users/macowell/Desktop/phantom/' + d + '-203dpi' + '.ppm', {quality: 100, format: 'ppm'});
-      page.render('/Users/macowell/Desktop/phantom/' + d + '-203dpi' + '.pdf', {quality: 100, format: 'pdf'});
+      page.render('static/print/' + d + '-72dpi.pdf', {quality: 100, format: 'pdf'});
       phantom.exit();
     }, 3000)
   }

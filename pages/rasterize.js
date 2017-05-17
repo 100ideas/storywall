@@ -11,9 +11,6 @@ import fetch from 'isomorphic-unfetch'
 //
 // https://github.com/zeit/next.js/tree/v3-beta#fetching-data-and-component-lifecycle
 
-// <PrintLayout>
-// </PrintLayout>
-
 const Rasterize = ({ story }) => (
 
   <PrintLayout>
@@ -72,19 +69,9 @@ Rasterize.getInitialProps = async ({ req }) => {
   let splitAfterTwoWords = /^(\w+\s+\w+)([^]+)/m
   let baa = ''
   for (let prop of ['role', 'need', 'benefit']) {
-    // baa = splitAfterTwoWords.exec(mockInitProps[prop])
-    // console.log("\n\n--------------------\n\n")
-    // console.log(prop)
-    // console.log(mockInitProps[prop])
-    // console.log(splitAfterTwoWords.exec(mockInitProps[prop]))
     mockInitProps[prop] = splitAfterTwoWords.exec(mockInitProps[prop]).slice(1)
-
-
-    // console.log
   }
-  // console.log("\n\n--------------------\n\n")
 
-  // console.dir(mockInitProps)
   return { story: mockInitProps }
 }
 

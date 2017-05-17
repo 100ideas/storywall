@@ -16,6 +16,9 @@ app.prepare()
   })
 
   server.get('*', (req, res) => {
+    // handle trailing '/' in urls
+    // req.url = req.url.replace(/\/$/, "")
+    // if (req.url == "") { req.url = "/" }
     return handle(req, res)
   })
 
