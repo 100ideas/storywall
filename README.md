@@ -43,3 +43,14 @@ Thermal Printer Technical Resources
 - [**xseignard/thermalPrinter**: Use node.js to communicate with Adafruit/Sparkfun Thermal Printer](https://github.com/xseignard/thermalPrinter)
 - [pbm2lwxl - A driver for the Dymo/CoStar/Avery Label printers](http://web.archive.org/web/20101021114259/http://www.freelabs.com/~whitis/software/pbm2lwxl/) (questionable utility?)
   > "pbm2lwxl is a device driver for the CoStar Labelwriter XL and compatible printers. It takes plain (not raw) pbm files. The PBM file format was popularized by the PBM (aka netbpm, pbmplus, etc) utilities by Jef Poskanzer. There are utilities to convert from almost any image format to PBM/PPM/PGM/PNM, and vice versa. Ghostscript supports pbm output."
+
+
+Provisioning Pi (WiP)
+---------------------
+Hopefully this works...
+
+```
+sudo mkdir /opt/thermprint; chown pi:www-data /opt/thermprint; cd /opt/thermprint
+git clone https://github.com/adafruit/zj-58.git; cd zj-58
+sudo apt-get install libcups2-dev libcupsimage2-dev g++ cups cups-client
+```
