@@ -7,9 +7,9 @@ const Index = (props) => (
   <Layout>
 
     <h1 className="tc">FUCKING SHIP IT</h1>
-    {/* <ListStories stories={props.movies}/> */}
+    <ListStories stories={props.movies}/>
 
-    {/* <ul className="bg-near-black">
+    <ul className="bg-near-black">
       {props.movies.map((movie) => (
         <li key={movie.imdbID}>
           <Link as={`/p/${movie.imdbID}`} href={`/post?id=${movie.imdbID}`}>
@@ -17,7 +17,7 @@ const Index = (props) => (
           </Link>
         </li>
       ))}
-    </ul> */}
+    </ul>
 
   </Layout>
 )

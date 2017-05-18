@@ -3,10 +3,23 @@ storyprinter
 Simple application, overkill stack as a learning exercise: react + next.js + graphql (and rpi + thermal printer)
 
 TODO
+----
 + preinstall.sh to install armv7 phantomjs binaries on pi
 + printRender page
 + test phantomjs manually
-+ figure out simple rest API to trigger server rendering w/ phantonjs
+- figure out simple rest API to trigger server rendering w/ phantonjs
+
+notes
+-----
+- next v3.0beta
+  - fixes trailing slash problem in urls ?
+    - https://github.com/zeit/next.js/blob/v3-beta/lib/router/index.js#L100
+  - how to use postcss + webpack + babel + next.config.js to load css
+    - https://github.com/zeit/next.js/tree/v3-beta/examples/with-global-stylesheet
+  - or wrap with styled-jsx
+    - https://github.com/zeit/next.js/blob/v3-beta/examples/with-apollo/components/App.js
+
+
 
 Thermal Printer Specs
 ---------------------

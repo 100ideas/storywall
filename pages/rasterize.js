@@ -1,5 +1,5 @@
 import React from "react"
-import PrintLayout from "../components/PrintLayout.js"
+// import PrintLayout from "../components/PrintLayout.js"
 import Moment from "moment"
 import fetch from 'isomorphic-unfetch'
 
@@ -13,9 +13,9 @@ import fetch from 'isomorphic-unfetch'
 
 const Rasterize = ({ story }) => (
 
-  <PrintLayout>
 
-  <main className="fl ba b--black-40 measure-narrow ma2 story">
+
+  <main className="fl ba b--black-40 measure-narrow ma2 story rasterize">
 
     <header className="f3 fw7 bg-near-black white pv3 cf">
       <div className="fl ph3">
@@ -45,7 +45,6 @@ const Rasterize = ({ story }) => (
     </footer>
 
   </main>
-  </PrintLayout>
 )
 
 Rasterize.getInitialProps = async ({ req }) => {
