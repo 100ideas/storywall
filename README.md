@@ -35,10 +35,10 @@ Thermal Printer Specs
 
 Thermal Printer Technical Resources
 -----------------------------------
-- [Adafruit: Mini Thermal Receipt Printer Overview](https://learn.adafruit.com/mini-thermal-receipt-printer?view=all)
+- [Adafruit: Minhttps://github.com/100ideas/storywall/edit/master/README.mdi Thermal Receipt Printer Overview](https://learn.adafruit.com/mini-thermal-receipt-printer?view=all)
 - [Adafruit: Thermal Printer + pi "instant camera"](https://learn.adafruit.com/instant-camera-using-raspberry-pi-and-thermal-printer?view=all)
 - [**adafruit/Python-Thermal-Printer**: ](https://github.com/adafruit/Python-Thermal-Printer)
-  > "# This is a Python library for the Adafruit Thermal Printer. These printers use TTL serial to communicate, 2 pins are required. IMPORTANT: On 3.3V systems (e.g. Raspberry Pi), use a 10K resistor on the RX pin (TX on the printer, green wire), or simply leave unconnected."
+  > "This is a Python library for the Adafruit Thermal Printer. These printers use TTL serial to communicate, 2 pins are required. IMPORTANT: On 3.3V systems (e.g. Raspberry Pi), use a 10K resistor on the RX pin (TX on the printer, green wire), or simply leave unconnected."
 - [**adafruit/zj-58**: CUPS filter for thermal printer Zjiang ZJ-58](https://github.com/adafruit/zj-58)
 - [**xseignard/thermalPrinter**: Use node.js to communicate with Adafruit/Sparkfun Thermal Printer](https://github.com/xseignard/thermalPrinter)
 - [pbm2lwxl - A driver for the Dymo/CoStar/Avery Label printers](http://web.archive.org/web/20101021114259/http://www.freelabs.com/~whitis/software/pbm2lwxl/) (questionable utility?)
