@@ -31,3 +31,12 @@ Thermal Printer Specs
 - power: DC5V-9V
 - interface: Serial(RS-232,TTL), Parallel
 - [product sheet](http://www.adafruit.com/datasheets/cashino%20thermal%20printer%20a2.pdf), [user manual](https://cdn-shop.adafruit.com/datasheets/CSN-A2+User+Manual.pdf)
+
+
+Thermal Printer Technical Resources
+-----------------------------------
+- [Adafruit: Mini Thermal Receipt Printer Overview](https://learn.adafruit.com/mini-thermal-receipt-printer?view=all)
+- [Adafruit: Thermal Printer + pi "instant camera"](https://learn.adafruit.com/instant-camera-using-raspberry-pi-and-thermal-printer?view=all)
+- [Adafruit Python-Thermal-Printer library](https://github.com/adafruit/Python-Thermal-Printer)
+- [adafruit/zj-58: CUPS filter for thermal printer Zjiang ZJ-58](https://github.com/adafruit/zj-58)
+- [xseignard/thermalPrinter: Use node.js to communicate with Adafruit/Sparkfun Thermal Printer](https://github.com/xseignard/thermalPrinter)
