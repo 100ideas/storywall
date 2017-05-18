@@ -16,9 +16,9 @@ app.prepare()
   })
 
   server.get('*', (req, res) => {
-    // handle trailing '/' in urls
-    // req.url = req.url.replace(/\/$/, "")
-    // if (req.url == "") { req.url = "/" }
+    // trailing '/' in urls will be handled in next v3.0
+    // https://github.com/zeit/next.js/blob/v3-beta/lib/router/index.js#L89
+
     return handle(req, res)
   })
 

@@ -7,7 +7,7 @@ const Index = (props) => (
   <Layout>
 
     <h1 className="tc">FUCKING SHIP IT</h1>
-    <ListStories stories={props.movies}/>
+    {/* <ListStories stories={props.movies}/> */}
 
     {/* <ul className="bg-near-black">
       {props.movies.map((movie) => (
