@@ -48,10 +48,39 @@ Thermal Printer Technical Resources
 
 Provisioning Pi (WiP)
 ---------------------
-Hopefully this works...
+- https://www.raspberrypi.org/documentation/configuration/wireless/wireless-cli.md
+- http://thisdavej.com/beginners-guide-to-installing-node-js-on-a-raspberry-pi/#install-node
+- https://yarnpkg.com/en/docs/install#linux-tab
 
-```
-sudo mkdir /opt/thermprint; chown pi:www-data /opt/thermprint; cd /opt/thermprint
-git clone https://github.com/adafruit/zj-58.git; cd zj-58
-sudo apt-get install libcups2-dev libcupsimage2-dev g++ cups cups-client
+```bash
+# *interactive* configure keyboard, hostname, expand fs etc
+raspi-config
+
+# *interactive* configure wifi
+sudo iwlist wlan0 scan | grep <ssid>
+wpa_passphrase <ssid> <ssid-password> | sudo tee -a /etc/wpa_supplicant/wpa_supplicant.conf > /dev/null
+
+# system upgrade (~30min on rpi2)
+sudo apt-get update && time sudo apt-get dist-upgrade
+
+# get node packages
+curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
+
+# get yarn packages
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+
+# 15 min big install (may need nice; need g++ if latest not already installed)
+time sudo apt-get update && time sudo apt-get install -y nodejs yarn libcups2-dev libcupsimage2-dev cups cups-client
+
+# setup dirs
+sudo mkdir /opt/thermprint
+sudo chown pi:www-data /opt/thermprint
+cd /opt/thermprint
+git clone https://github.com/adafruit/zj-58.git
+
+sudo mkdir /opt/storywall
+sudo chown pi:www-data /opt/storywall
+cd /opt
+git clone https://github.com/100ideas/storywall.git storywall
 ```
