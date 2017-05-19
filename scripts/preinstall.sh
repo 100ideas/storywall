@@ -17,7 +17,7 @@
 #  [2]: https://learn.adafruit.com/introducing-the-raspberry-pi-2-model-b?view=all#overview
 
 # are we on a pi?
-if [[ $(cat cpuinfo | grep 'ARMv') && $(cat cpuinfo | grep 'BCM') ]]; then
+if [[ $(cat /proc/cpuinfo | grep 'ARMv') && $(cat /proc/cpuinfo | grep 'BCM') ]]; then
 
   # install phantomjs deps
   sudo apt-get install libfontconfig1 libfreetype6 libpng12-0
