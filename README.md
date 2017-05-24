@@ -8,6 +8,12 @@ TODO
 + printRender page
 + test phantomjs manually
 - figure out simple rest API to trigger server rendering w/ phantonjs
++ mock JSON API
+  - https://hook.io/100ideas/fakerjs-storyprinter
+  - https://gist.github.com/100ideas/912eced936c08276b5ff42239b9d1c15
+- mock graphql API
+  - https://github.com/APIs-guru/graphql-faker
+  - probably faster just to stub it out
 
 notes
 -----
@@ -60,6 +66,9 @@ raspi-config
 sudo iwlist wlan0 scan | grep <ssid>
 wpa_passphrase <ssid> <ssid-password> | sudo tee -a /etc/wpa_supplicant/wpa_supplicant.conf > /dev/null
 
+# to configure wpa-roam for multiple wifi networks
+# https://www.thepolyglotdeveloper.com/2016/08/connect-multiple-wireless-networks-raspberry-pi/
+
 # system upgrade (~30min on rpi2)
 sudo apt-get update && time sudo apt-get dist-upgrade
 
@@ -83,4 +92,124 @@ sudo mkdir /opt/storywall
 sudo chown pi:www-data /opt/storywall
 cd /opt
 git clone https://github.com/100ideas/storywall.git storywall
+```
+
+
+## chrome headless
+
+chromium command line switches
+http://peter.sh/experiments/chromium-command-line-switches/
+consider
+- --disable-2d-canvas-clip-aa ⊗	Disable antialiasing on 2d canvas clips ↪
+- --disable-canvas-aa ⊗	Disable antialiasing on 2d canvas. ↪
+- --disable-composited-antialiasing ⊗	Disables layer-edge anti-aliasing in the compositor. ↪
+- OS_WIN only -disable-directwrite-for-ui[1] ⊗	Disables DirectWrite font rendering for general UI elements. ↪
+- enable-harfbuzz-rendertext - // Enables the HarfBuzz port of RenderText on Mac (it's already used only for text editing; this enables it for everything else).
+	https://cs.chromium.org/chromium/src/ui/gfx/switches.cc?q=kDisableDirectWriteForUI&sq=package:chromium&type=cs&l=12
+
+- --enable-low-end-device-mode ⊗	Force low-end device mode when set.
+- --enable-consumer-kiosk ⊗	Enables consumer kiosk mode for Chrome OS
+
+
+```
+alias chrome-canary "/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary"
+
+chrome-canary http://localhost:3000/rasterize --headless --screenshot --window-size=384,700 --disable-direct
+```
+
+Arcane Pi config Resources
+--------------------------
+
+### chromium-browser kiosk mode
+https://github.com/CODESIGN2/rpi-pixel-kiosk
+
+also see
+https://www.danpurdy.co.uk/web-development/raspberry-pi-kiosk-screen-tutorial/
+
+### learn system and shell basics (debian)
+https://www.debian.org/doc/manuals/debian-reference/
+
+### images in terminal
+- 'fbi' package displays images in terminal
+  - http://www.instructables.com/id/Raspberry-Pi-Wall-Display-Without-X-Windows/
+- 'hiptext'
+
+
+### locales
+```
+$ sudo locale-gen "en_US.UTF-8"
+Generating locales...
+  en_US.UTF-8... done
+Generation complete.
+
+$ sudo dpkg-reconfigure locales
+Generating locales...
+  en_US.UTF-8... up-to-date
+Generation complete.
+```
+
+### raspi-config
+http://elinux.org/RPiconfig
+
+> As the Raspberry Pi doesn't have a conventional BIOS, the various system configuration parameters that would normally be kept and set using the BIOS are now stored in a text file named "config.txt".
+>
+> The Raspberry Pi config.txt file is read by the GPU before the ARM core is initialized.
+>
+> This file is an optional file on the boot partition. It would normally be accessible as /boot/config.txt from Linux, but from Windows (or OS X) it would be seen as a file in the accessible part of the card.
+
+```
+vcgencmd get_config <config> - lists a specific config value. E.g. vcgencmd get_config arm_freq
+vcgencmd get_config int - lists all the integer config options that are set (non-zero)
+vcgencmd get_config str - lists all the string config options that are set (non-null)
+```
+
+
+### storywall printer hacking - obsolete
+-------------------------
+
+make thermal printer CUPS printer default
+https://learn.adafruit.com/instant-camera-using-raspberry-pi-and-thermal-printer?view=all#install-software
+
+# check /var/log/cups/error_log if problems installing
+```
+cd /opt/thermprint
+git clone https://github.com/adafruit/zj-58
+cd zj-58
+make
+sudo ./install
+```
+
+```
+sudo lpadmin -p ZJ-58 -E -v serial:/dev/ttyAMA0?baud=19200 -m zjiang/ZJ-58.ppd
+sudo lpoptions -d ZJ-58
+```
+
+```
+$ sudo lpoptions -d ZJ-58
+copies=1 device-uri=serial:/dev/ttyAMA0?baud=19200 finishings=3 job-hold-until=no-hold job-priority=50 job-sheets=none,none marker-change-time=0 number-up=1 printer-commands=none printer-info=ZJ-58 printer-is-accepting-jobs=true printer-is-shared=true printer-location printer-make-and-model='Zijiang ZJ-58' printer-state=3 printer-state-change-time=1495505009 printer-state-reasons=none printer-type=20484 printer-uri-supported=ipp://localhost:631/printers/ZJ-58
+```
+
+```
+sudo apt-get install python-pip
+sudo apt-get install python-PIL
+sudo pip install PySerial
+
+# adafruit python lib
+pi@storywall:/opt/thermprint/Python-Thermal-Printer $ pdfinfo demo.pdf
+Title:
+Creator:
+Producer:       Qt 5.5.1
+CreationDate:   Tue May 23 02:38:51 2017
+Tagged:         no
+UserProperties: no
+Suspects:       no
+Form:           none
+JavaScript:     no
+Pages:          1
+Encrypted:      no
+Page size:      384 x 900 pts
+Page rot:       0
+File size:      50622 bytes
+Optimized:      no
+PDF version:    1.4
 ```

@@ -4,17 +4,20 @@ import Story from './Story'
 
 const ListStories = ({ stories }) => (
   <section
-    className="w-100 ba"
+    className="w-100 ph4"
     // style={{display: 'flex', flexWrap: 'wrap', background: 'url(http://mrmrs.io/photos/u/009.jpg) no-repeat center'}}
     style={{display: 'flex', flexWrap: 'wrap'}}
   >
 
-    {stories.map((story) => (
+    { stories.map((s, i) => <Story story={s} key={i}/>) }
 
-      <Story story={story} key={story.imdbID}/>
-
-    ))}
-
+    {process.env.NODE_ENV !== 'production' &&
+      <div className="mt3 ph3 bl">
+        <h3>sample story JSON</h3>
+        <pre className="code f6">{JSON.stringify(stories[0], true, 2)}</pre>
+      </div>
+    }
+    
   </section>
 )
 

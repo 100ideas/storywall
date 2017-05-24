@@ -3,7 +3,7 @@ var system = require('system');
 var fs = require('fs');
 var page = require('webpage').create();
 // var urls = ['http://localhost:3000/rasterize', 'http://localhost:3000/create', 'http://localhost:3000/', 'http://localhost:3000/about', 'https://www.google.com']
-var url = 'http://localhost:3000/rasterize/' + (system.args[1] ? system.args[1] : '');
+var url = 'http://localhost:3000/rasterize' + ( system.args[1] ? '/' + system.args[1] : '');
 
 console.log("\nphantstory.js\n--------------\n - CWD: " + fs.workingDirectory + " \n - rasterizing " + url + "\n\n");
 

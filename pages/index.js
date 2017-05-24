@@ -7,29 +7,21 @@ const Index = (props) => (
   <Layout>
 
     <h1 className="tc">FUCKING SHIP IT</h1>
-    <ListStories stories={props.movies}/>
-
-    {/* <ul className="bg-near-black">
-      {props.movies.map((movie) => (
-        <li key={movie.imdbID}>
-          <Link as={`/p/${movie.imdbID}`} href={`/post?id=${movie.imdbID}`}>
-            <a>{movie.Title}</a>
-          </Link>
-        </li>
-      ))}
-    </ul> */}
+    <ListStories stories={props.stories}/>
 
   </Layout>
 )
 
 Index.getInitialProps = async function() {
-  const res = await fetch('http://www.omdbapi.com/?s=never&type=movie')
+
+  const res = await fetch('https://hook.io/100ideas/fakerjs-storyprinter?numstories=6')
   const data = await res.json()
 
-  console.log(`Movie data fetched. Count: ${data.Search.length}`)
+  console.log(`mock stories fetched. Count: ${data.length}`)
+  console.dir(data)
 
   return {
-    movies: data.Search
+    stories: data
   }
 }
 

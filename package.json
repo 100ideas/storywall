@@ -5,14 +5,17 @@
   "license": "MIT",
   "scripts": {
     "preinstall": "scripts/preinstall.sh",
-    "dev": "node server.js",
+    "dev": "next",
     "build": "next build",
-    "start": "NODE_ENV=production node server.js",
-    "next": "next",
+    "start": "next start",
+    "export": "next export",
+    "dev-express": "node server.js",
+    "start-express": "NODE_ENV=production node server.js",
     "rasterize": "phantomjs scripts/phantstory.js"
   },
   "dependencies": {
     "express": "^4.15.2",
+    "faker": "^4.1.0",
     "interactive": "^0.1.9",
     "isomorphic-unfetch": "^1.0.0",
     "moment": "^2.18.1",
