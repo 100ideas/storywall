@@ -52,6 +52,7 @@ Thermal Printer Technical Resources
 - [Setting up serial port rx/tx w/ printer](https://electronicfields.wordpress.com/2011/09/29/thermal-printer-dot-net/)
   ![](./static/xseignard-thermalPrinter-wiring-diagram.png)
 
+
 Provisioning Pi (WiP)
 ---------------------
 - https://www.raspberrypi.org/documentation/configuration/wireless/wireless-cli.md
@@ -94,7 +95,6 @@ cd /opt
 git clone https://github.com/100ideas/storywall.git storywall
 ```
 
-
 ## chrome headless
 
 chromium command line switches
@@ -106,9 +106,68 @@ consider
 - OS_WIN only -disable-directwrite-for-ui[1] ⊗	Disables DirectWrite font rendering for general UI elements. ↪
 - enable-harfbuzz-rendertext - // Enables the HarfBuzz port of RenderText on Mac (it's already used only for text editing; this enables it for everything else).
 	https://cs.chromium.org/chromium/src/ui/gfx/switches.cc?q=kDisableDirectWriteForUI&sq=package:chromium&type=cs&l=12
-
 - --enable-low-end-device-mode ⊗	Force low-end device mode when set.
-- --enable-consumer-kiosk ⊗	Enables consumer kiosk mode for Chrome OS
+
+
+
+## more chromium switches - iss-streamer
+
+- [ustream html5 api](http://developers.ustream.tv/player-api/player.html)
+- [html5 element.requestFullscreen()](https://developer.mozilla.org/en-US/docs/Web/API/Element/requestFullscreen)
+- note [Fullscreen API Presentation differences](https://developer.mozilla.org/en-US/docs/Web/API/Fullscreen_API#Presentation_differences)
+
+
+```
+#!/bin/sh
+
+#####################################
+# start / stop chromium with
+#   $ systemctl --user start kiosk
+#   $ systemctl --user stop kiosk
+# 
+# to enable remote chromium dev-tool connection, start looback -> 0.0.0.0 local SSH tunnel
+#   sudo ssh -f -L 0.0.0.0:9223:localhost:9222 pi@localhost -N
+
+# chrome / chromium switches
+# https://cs.chromium.org/chromium/src/chrome/common/chrome_switches.h?q=switches+restore&dr=CSs
+# http://peter.sh/experiments/chromium-command-line-switches/
+
+if [ -e '/boot/alwayson' ]; then
+  xset -dpms
+  xset s off
+fi
+
+# clean up if like me you just yank the power or ssh in and poweroff
+rm -rf ~/.config/chromium/Singleton*
+
+# disable 'didn't shut down correcty, restore session? bubble'
+# https://groups.google.com/a/chromium.org/d/msg/chromium-reviews/HdvP8PttOLM/8nsZXxnXq-YJ
+sed -i 's/"exited_cleanly": false/"exited_cleanly": true/' ~/.config/chromium/Default/Preferences
+sed -i 's/"exit_type":"Crashed"/"exit_type":"None"/' ~/.config/chromium/Default/Preferences
+
+# start 'er up
+chromium-browser \
+  --kiosk \
+  --incognito \
+  --disable-java \
+  --disable-restore-session-state \
+  --disable-sync \
+  --dns-prefetch-disable \
+  --disable-sync-preferences \
+  --disable-infobars \
+  --disable-translate \
+  --noerrdialogs \
+  --start-fullscreen \
+  --remote-debugging-port=9222 \
+  "https://www.ustream.tv/embed/17074538?html5ui&autoplay=true&controls=false"
+
+# hide cursor w/ javascript
+# document.getElementById("CorsFrame").requestPointerLock()
+
+# local SSH tunnel loopback -> all IP?
+# https://stackoverflow.com/a/9269355/957984
+
+```
 
 
 ```

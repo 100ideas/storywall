@@ -4,11 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "preinstall": "scripts/preinstall.sh",
     "dev": "next",
-    "build": "next build",
     "start": "next start",
-    "export": "next export",
+    "export": "next build && next export",
     "dev-express": "node server.js",
     "start-express": "NODE_ENV=production node server.js",
     "rasterize": "phantomjs scripts/phantstory.js"
@@ -19,12 +17,9 @@
     "interactive": "^0.1.9",
     "isomorphic-unfetch": "^1.0.0",
     "moment": "^2.18.1",
-    "next": "^2.4.0",
+    "next": "beta",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-toolbox": "^2.0.0-beta.8"
-  },
-  "optionalDependencies": {
-    "phantomjs-prebuilt": "^2.1.14"
   }
 }

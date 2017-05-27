@@ -6,7 +6,7 @@ export default ({ children, title = 'default title' }) => (
     <title>storyprinter: print view</title>
     <meta charSet='utf-8' />
     <meta name='viewport' content='initial-scale=1.0, width=device-width' />
-    <link rel="stylesheet" href="static/tachyons.min.css"/>
+    <link rel="stylesheet" href="static/tachyons.css"/>
     <link rel="stylesheet" href="static/react-toolbox/theme.css"/>
     <style type="text/css">
       {`

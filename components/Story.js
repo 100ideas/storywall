@@ -26,10 +26,10 @@ export default ({ story }) => (
     
     <hr />
 
-    <h5>comments:</h5>
-    <ul>
+    <h5 className="mv3">comments:</h5>
+    <ul className="list pl0 ml0 w-100 ba b--light-silver br2">
       {story.comments.map((c, i) => 
-        <li className="f6 lh-copy measure" key={i}>{c}</li>
+        <li className="f6 athelas lh-copy pa2 measure bb b--light-silver" key={i}>{c}</li>
       )}  
     </ul>
 
